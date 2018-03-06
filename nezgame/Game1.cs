@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Nez.Sprites;
 
 namespace nezgame
 {
@@ -21,9 +22,19 @@ namespace nezgame
             // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
             var myScene = Scene.createWithDefaultRenderer(Color.CornflowerBlue);
 
+            // load a Texture. Note that the Texture is loaded via the scene.content class. This works just like the standard MonoGame Content class
+            // with the big difference being that it is tied to a Scene. When the Scene is unloaded so too is all the content loaded via myScene.content.
+            var texture = myScene.content.Load<Texture2D>("images/Capture");
+
             // setup our Scene by adding some Entities
             var entityOne = myScene.createEntity("entity-one");
+            entityOne.addComponent(new Sprite(texture));
+
             var entityTwo = myScene.createEntity("entity-two");
+            entityTwo.addComponent(new Sprite(texture));
+
+            // move entityTwo to a new location so it isn't overlapping entityOne
+            entityTwo.transform.position = new Vector2(200, 200);
 
             // set the scene so Nez can take over
             scene = myScene;
