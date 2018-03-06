@@ -29,6 +29,7 @@ namespace nezgame
             // setup our Scene by adding some Entities
             var entityOne = myScene.createEntity("entity-one");
             entityOne.addComponent(new Sprite(texture));
+            entityOne.addComponent(new SimpleMover());
 
             var entityTwo = myScene.createEntity("entity-two");
             entityTwo.addComponent(new Sprite(texture));
