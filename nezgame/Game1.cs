@@ -25,10 +25,11 @@ namespace nezgame
             // load a Texture. Note that the Texture is loaded via the scene.content class. This works just like the standard MonoGame Content class
             // with the big difference being that it is tied to a Scene. When the Scene is unloaded so too is all the content loaded via myScene.content.
             var texture = myScene.content.Load<Texture2D>("images/Capture");
+            var t2 = myScene.content.Load<Texture2D>("images/shuttle");
 
             // setup our Scene by adding some Entities
             var entityOne = myScene.createEntity("entity-one");
-            entityOne.addComponent(new Sprite(texture));
+            entityOne.addComponent(new Sprite(t2));
             entityOne.addComponent(new SimpleMover());
 
             var entityTwo = myScene.createEntity("entity-two");
