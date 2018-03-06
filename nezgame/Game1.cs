@@ -1,36 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nez;
 
 namespace nezgame
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : Core
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        
-        public Game1()
-        {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-        }
+        public Game1() : base(width: 1280, height: 768, isFullScreen: false, enableEntitySystems: false)
+        { }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
-        }
+            Window.AllowUserResizing = true;
 
+            // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
+            var myScene = Scene.createWithDefaultRenderer(Color.CornflowerBlue);
+
+            // setup our Scene by adding some Entities
+            var entityOne = myScene.createEntity("entity-one");
+            var entityTwo = myScene.createEntity("entity-two");
+
+            // set the scene so Nez can take over
+            scene = myScene;
+        }
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -38,7 +35,7 @@ namespace nezgame
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
             // TODO: use this.Content to load your game content here
         }
